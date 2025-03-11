@@ -7,7 +7,7 @@ if (process.env.RESEND_API_KEY) {
   resend = new Resend(process.env.RESEND_API_KEY);
 }
 
-const OWNER_EMAIL = 'owner@example.com'; // Replace with actual owner email
+const OWNER_EMAIL = 'ourshop005@gmail.com'; // Owner email address
 
 export async function sendContactEmail(message: ContactMessage) {
   try {
