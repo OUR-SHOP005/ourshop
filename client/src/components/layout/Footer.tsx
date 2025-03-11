@@ -78,7 +78,7 @@ export default function Footer() {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/our_shop_005?utm_source=qr&igsh=MW10YnAxbmprbGhrZA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary"
@@ -86,7 +86,7 @@ export default function Footer() {
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/our-shop-shop-a45011356"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary"
