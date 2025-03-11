@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between mx-auto px-4 sm:px-6 lg:px-8 my-2">
         <Link href="/">
           <a className="flex items-center gap-3">
             <img 

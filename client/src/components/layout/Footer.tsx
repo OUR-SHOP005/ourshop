@@ -3,8 +3,8 @@ import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-muted/30">
-      <div className="container py-12 md:py-16">
+    <footer className="bg-muted/30 my-4"> {/* Added margin to the footer */}
+      <div className="container py-12 md:py-16 mx-auto px-4 sm:px-6 lg:px-8"> {/* Added margin and padding */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-lg font-semibold mb-4">Our Shop</h3>
