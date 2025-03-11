@@ -13,7 +13,7 @@ export default function Footer() {
               and development.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -51,9 +51,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li>123 Design Street</li>
-              <li>Creative City, CC 12345</li>
-              <li>contact@ourshop.com</li>
+              <li>ourshop005@gmail.com</li>
               <li>+1 (234) 567-8900</li>
             </ul>
           </div>
