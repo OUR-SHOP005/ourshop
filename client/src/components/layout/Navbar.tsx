@@ -30,7 +30,7 @@ export default function Navbar() {
             <img 
               src="/assets/logo.jpeg" 
               alt="Our Shop Logo" 
-              className="h-10 w-auto mr-2"
+              className="h-10 w-10 rounded-full border-2 border-primary object-cover" // Added circular styling
             />
             <span className="text-xl font-semibold">OUR SHOP</span>
           </a>

@@ -74,28 +74,16 @@ export const PORTFOLIO_ITEMS = [
 
 export const TEAM_MEMBERS = [
   {
-    name: "Sarah Johnson",
-    role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1455849318743-b2233052fcff",
-    bio: "10+ years of experience in digital design"
-  },
-  {
-    name: "Michael Chen",
+    name: "BHUPESH PRATAP SINGH",
     role: "Lead Developer",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    bio: "Full-stack developer with a passion for clean code"
+    bio: "Full-stack developer with expertise in modern web technologies"
   },
   {
-    name: "Emma Williams",
-    role: "UX Designer",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978",
-    bio: "Specialist in user-centered design"
-  },
-  {
-    name: "David Miller",
-    role: "Technical Lead",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-    bio: "Expert in modern web technologies"
+    name: "UTKARSH CHAUDHARY",
+    role: "Creative Director",
+    image: "https://images.unsplash.com/photo-1455849318743-b2233052fcff",
+    bio: "Expert in digital design and user experience"
   }
 ];
 
