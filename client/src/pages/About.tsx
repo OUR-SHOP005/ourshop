@@ -4,9 +4,9 @@ import TeamMember from "@/components/shared/TeamMember";
 export default function About() {
   return (
     <div className="container mx-auto py-16">
-      <div className="max-w-3xl mb-16">
-        <h1 className="text-4xl font-bold mb-4">About Our Shop</h1>
-        <p className="text-xl text-muted-foreground">
+      <div className="max-w-3xl mb-16 text-center mx-auto">
+        <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">About Our Shop</h1>
+        <p className="text-xl text-muted-foreground leading-relaxed">
           We're a team of passionate designers and developers dedicated to
           creating exceptional digital experiences that drive business growth.
         </p>

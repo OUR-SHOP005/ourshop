@@ -75,15 +75,15 @@ export const PORTFOLIO_ITEMS = [
 export const TEAM_MEMBERS = [
   {
     name: "BHUPESH PRATAP SINGH",
-    role: "Lead Developer",
+    role: "Creative Director",
     image: "/assets/team/bhupesh.jpeg",
-    bio: "Full-stack developer with expertise in modern web technologies"
+    bio: "Innovative Creative Director with a passion for exceptional design and branding. Expert in crafting unique digital experiences and leading creative strategies that elevate brand identities. Brings a perfect blend of artistic vision and technical understanding to every project."
   },
   {
     name: "UTKARSH CHAUDHARY",
-    role: "Creative Director",
+    role: "Lead Developer",
     image: "/assets/team/utkarsh.jpeg",
-    bio: "Expert in digital design and user experience"
+    bio: "Senior Full-stack Developer specializing in modern web architectures and cloud technologies. Experienced in building scalable applications using React, Node.js, and cutting-edge development tools. Known for delivering high-performance solutions and mentoring development teams."
   }
 ];
 
