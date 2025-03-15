@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Send } from "lucide-react";
 import { useState } from "react";
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import ReactMarkdown from 'react-markdown'; // Added import for markdown rendering
 
 interface Message {
   text: string;
@@ -36,10 +36,10 @@ export default function ChatButton() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage }),
       });
-      
+
       const data = await response.json();
       const botMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response";
-      
+
       setMessages(prev => [...prev, { text: botMessage, isBot: true }]);
     } catch (error) {
       console.error("Chat error:", error);
@@ -65,7 +65,7 @@ export default function ChatButton() {
           <DialogHeader>
             <DialogTitle>AI Assistant</DialogTitle>
           </DialogHeader>
-          
+
           <ScrollArea className="flex-1 p-4">
             <div className="space-y-4">
               {messages.map((msg, i) => (
@@ -78,7 +78,7 @@ export default function ChatButton() {
                       msg.isBot ? 'bg-secondary' : 'bg-primary text-primary-foreground'
                     }`}
                   >
-                    {msg.text}
+                    <ReactMarkdown>{msg.text}</ReactMarkdown> {/* Render markdown here */}
                   </div>
                 </div>
               ))}

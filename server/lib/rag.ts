@@ -15,19 +15,36 @@ class RAGSystem {
   }
 
   private loadDocuments() {
-    // Load content from client/src/pages
-    const pagesDir = join(process.cwd(), 'client/src/pages');
-    const files = readdirSync(pagesDir);
+    const directories = [
+      'client/src/pages',
+      'client/src/components',
+      'server/lib'
+    ];
     
-    for (const file of files) {
-      if (file.endsWith('.tsx')) {
-        const content = readFileSync(join(pagesDir, file), 'utf-8');
-        this.documents.push({
-          content,
-          path: join('pages', file)
+    directories.forEach(dir => {
+      const fullPath = join(process.cwd(), dir);
+      try {
+        const files = readdirSync(fullPath);
+        files.forEach(file => {
+          if (file.endsWith('.tsx') || file.endsWith('.ts')) {
+            const content = readFileSync(join(fullPath, file), 'utf-8');
+            // Clean the content to remove code and keep comments/text
+            const cleanContent = content
+              .replace(/```[\s\S]*?```/g, '') // Remove code blocks
+              .replace(/import.*?;/g, '') // Remove imports
+              .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+              .replace(/\/\/.*/g, ''); // Remove single-line comments
+            
+            this.documents.push({
+              content: cleanContent,
+              path: join(dir, file)
+            });
+          }
         });
+      } catch (error) {
+        console.error(`Error loading documents from ${dir}:`, error);
       }
-    }
+    });
   }
 
   public findRelevantContent(query: string): string {
