@@ -11,6 +11,8 @@ import Portfolio from "@/pages/Portfolio";
 import Services from "@/pages/Services";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import { AuthProvider } from "./context/AuthContext"; // Added AuthProvider import
+
 
 function Router() {
   return (
@@ -28,15 +30,17 @@ function Router() {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow mt-16 px-4 md:px-6">
-          <Router />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
-      <Toaster />
+      <AuthProvider> {/* Added AuthProvider */}
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-grow mt-16 px-4 md:px-6">
+            <Router />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </div>
+        <Toaster />
+      </AuthProvider> {/* Closed AuthProvider */}
     </QueryClientProvider>
   );
 }
