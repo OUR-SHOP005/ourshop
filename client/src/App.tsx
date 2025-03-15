@@ -11,7 +11,7 @@ import Portfolio from "@/pages/Portfolio";
 import Services from "@/pages/Services";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
-import { AuthProvider } from "./context/AuthContext"; // Added AuthProvider import
+import { AuthProvider } from "@/context/AuthContext"; // Added AuthProvider import
 
 
 function Router() {
