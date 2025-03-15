@@ -77,13 +77,15 @@ export const TEAM_MEMBERS = [
     name: "BHUPESH PRATAP SINGH",
     role: "Creative Director",
     image: "/assets/team/bhupesh.jpeg",
-    bio: "Innovative Creative Director with a passion for exceptional design and branding. Expert in crafting unique digital experiences and leading creative strategies that elevate brand identities. Brings a perfect blend of artistic vision and technical understanding to every project."
+    bio: "Innovative Creative Director with a passion for exceptional design and branding. Expert in crafting unique digital experiences and leading creative strategies that elevate brand identities. Brings a perfect blend of artistic vision and technical understanding to every project.",
+    instagram: "thakur_ayush_singh_29_"
   },
   {
     name: "UTKARSH CHAUDHARY",
     role: "Lead Developer",
     image: "/assets/team/utkarsh.jpeg",
-    bio: "Senior Full-stack Developer specializing in modern web architectures and cloud technologies. Experienced in building scalable applications using React, Node.js, and cutting-edge development tools. Known for delivering high-performance solutions and mentoring development teams."
+    bio: "Senior Full-stack Developer specializing in modern web architectures and cloud technologies. Experienced in building scalable applications using React, Node.js, and cutting-edge development tools. Known for delivering high-performance solutions and mentoring development teams.",
+    instagram: "utkarsh_chaudhary_009"
   }
 ];
 

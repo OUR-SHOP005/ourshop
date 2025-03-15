@@ -21,6 +21,19 @@ export default function TeamMember({ member }: TeamMemberProps) {
           <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">{member.name}</h3>
           <p className="text-primary font-medium mt-2 text-lg">{member.role}</p>
           <p className="text-muted-foreground mt-4 leading-relaxed">{member.bio}</p>
+          <a 
+            href={`https://instagram.com/${member.instagram}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:text-primary/80 mt-4 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            @{member.instagram}
+          </a>
         </div>
       </CardContent>
     </Card>
