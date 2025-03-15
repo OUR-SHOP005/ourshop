@@ -76,13 +76,13 @@ export const TEAM_MEMBERS = [
   {
     name: "BHUPESH PRATAP SINGH",
     role: "Lead Developer",
-    image: "/attached_assets/WhatsApp Image 2025-03-15 at 20.06.55.jpeg",
+    image: "/assets/team/bhupesh.jpeg",
     bio: "Full-stack developer with expertise in modern web technologies"
   },
   {
     name: "UTKARSH CHAUDHARY",
     role: "Creative Director",
-    image: "/attached_assets/WhatsApp Image 2025-03-15 at 20.11.35.jpeg",
+    image: "/assets/team/utkarsh.jpeg",
     bio: "Expert in digital design and user experience"
   }
 ];
