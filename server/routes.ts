@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertContactMessageSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { sendContactEmail } from "./lib/email";
+import { generateGeminiResponse } from "./lib/gemini";
 
 import { getUserFromRequest, authMiddleware } from "./auth";
 
@@ -40,5 +41,7 @@ export async function registerRoutes(app: Express) {
     }
   });
 
+  app.post("/api/chat", generateGeminiResponse);
+  
   return createServer(app);
 }
