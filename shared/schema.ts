@@ -1,24 +1,38 @@
-import { pgTable, text, serial, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const contactMessages = pgTable("contact_messages", {
+export const portfolioItems = pgTable("portfolio_items", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  imageUrl: text("image_url").notNull(),
+  category: text("category").notNull(),
+});
+
+export const testimonials = pgTable("testimonials", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  email: text("email").notNull(),
-  message: text("message").notNull(),
-  company: text("company"),
+  role: text("role").notNull(),
+  content: text("content").notNull(),
+  imageUrl: text("image_url").notNull(),
 });
 
-export const insertContactMessageSchema = createInsertSchema(contactMessages).pick({
+export const insertPortfolioItemSchema = createInsertSchema(portfolioItems).pick({
+  title: true,
+  description: true,
+  imageUrl: true,
+  category: true,
+});
+
+export const insertTestimonialSchema = createInsertSchema(testimonials).pick({
   name: true,
-  email: true,
-  message: true,
-  company: true,
-}).extend({
-  email: z.string().email("Please enter a valid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters long"),
+  role: true,
+  content: true,
+  imageUrl: true,
 });
 
-export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
-export type ContactMessage = typeof contactMessages.$inferSelect;
+export type InsertPortfolioItem = z.infer<typeof insertPortfolioItemSchema>;
+export type PortfolioItem = typeof portfolioItems.$inferSelect;
+export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
+export type Testimonial = typeof testimonials.$inferSelect;

@@ -1,80 +1,76 @@
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { SERVICES, PORTFOLIO_ITEMS, TESTIMONIALS } from "@/lib/constants";
 import ServiceCard from "@/components/shared/ServiceCard";
-import PortfolioGrid from "@/components/shared/PortfolioGrid";
-import TestimonialCarousel from "@/components/shared/TestimonialCarousel";
+import TestimonialCard from "@/components/shared/TestimonialCard";
+import { SERVICES } from "@/lib/constants";
+import { useQuery } from "@tanstack/react-query";
+import type { Testimonial } from "@shared/schema";
 
 export default function Home() {
+  const { data: testimonials } = useQuery<Testimonial[]>({
+    queryKey: ["/api/testimonials"],
+  });
+
   return (
-    <div className="flex flex-col">
+    <div>
       {/* Hero Section */}
-      <section className="min-h-[90vh] flex items-center">
-        <div className="container mx-auto">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-              We Create Digital Experiences That Matter
-            </h1>
-            <p className="text-xl text-muted-foreground mt-6">
-              Award-winning web design agency helping businesses succeed in the
-              digital world through innovative design and development solutions.
-            </p>
-            <div className="flex gap-4 mt-8">
-              <Link href="/contact">
-                <Button size="lg" asChild>
-                  <a>
-                    Get Started
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </Link>
-              <Link href="/portfolio">
-                <Button variant="outline" size="lg" asChild>
-                  <a>View Our Work</a>
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-24">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SERVICES.map((service) => (
-              <ServiceCard key={service.title} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Work Section */}
-      <section className="py-24 bg-muted/10">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Work</h2>
-          <PortfolioGrid items={PORTFOLIO_ITEMS.slice(0, 3)} />
-          <div className="text-center mt-12">
+      <section className="container py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <h1 className="text-4xl font-bold mb-6 sm:text-5xl lg:text-6xl">
+            Building Digital Excellence for Your Business
+          </h1>
+          <p className="text-xl text-muted-foreground mb-8">
+            We create stunning websites and digital solutions that help your
+            business grow and succeed in the digital world.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link href="/contact">
+              <Button size="lg" asChild>
+                <a>
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </Link>
             <Link href="/portfolio">
               <Button size="lg" variant="outline" asChild>
-                <a>View All Projects</a>
+                <a>View Our Work</a>
               </Button>
             </Link>
           </div>
+        </motion.div>
+      </section>
+
+      {/* Services Section */}
+      <section className="container py-24 bg-muted">
+        <h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {SERVICES.map((service) => (
+            <ServiceCard key={service.title} service={service} />
+          ))}
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24">
-        <div className="container mx-auto">
+      {testimonials && testimonials.length > 0 && (
+        <section className="container py-24">
           <h2 className="text-3xl font-bold text-center mb-12">
             What Our Clients Say
           </h2>
-          <TestimonialCarousel testimonials={TESTIMONIALS} />
-        </div>
-      </section>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
