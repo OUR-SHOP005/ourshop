@@ -1,5 +1,5 @@
 
-import type { Request } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 export function getUserFromRequest(req: Request) {
   const userId = req.header("X-Replit-User-Id");
