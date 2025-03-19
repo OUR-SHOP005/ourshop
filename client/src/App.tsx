@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
@@ -13,15 +14,14 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import { AuthProvider } from "@/context/AuthContext";
 
-
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow mt-16 px-4 md:px-6">
-            <Router>
+        <Router>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-grow mt-16 px-4 md:px-6">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/portfolio" element={<Portfolio />} />
@@ -30,12 +30,12 @@ export default function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-            </Router>
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
-        <Toaster />
+            </main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
+          <Toaster />
+        </Router>
       </AuthProvider>
     </QueryClientProvider>
   );
