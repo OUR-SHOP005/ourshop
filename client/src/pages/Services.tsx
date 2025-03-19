@@ -29,7 +29,7 @@ export default function Services() {
                     <li>3 design revisions</li>
                     <li>Cross-browser compatibility</li>
                   </ul>
-                  <p className="font-medium">Starting from ₹4,999</p>
+                  <p className="font-medium">Starting from ₹2,999</p>
                 </>
               )}
               {service.title === "Web Development" && (
@@ -41,7 +41,7 @@ export default function Services() {
                     <li>Basic SEO setup</li>
                     <li>3 months support</li>
                   </ul>
-                  <p className="font-medium">Starting from ₹7,999</p>
+                  <p className="font-medium">Starting from ₹5,999</p>
                 </>
               )}
               {service.title === "E-Commerce" && (
@@ -53,7 +53,7 @@ export default function Services() {
                     <li>Basic inventory tracking</li>
                     <li>2 months support</li>
                   </ul>
-                  <p className="font-medium">Starting from ₹9,999</p>
+                  <p className="font-medium">Starting from ₹7,999</p>
                 </>
               )}
               {service.title === "UI/UX Design" && (
@@ -65,7 +65,7 @@ export default function Services() {
                     <li>User testing</li>
                     <li>2 revision rounds</li>
                   </ul>
-                  <p className="font-medium">Starting from ₹5,999</p>
+                  <p className="font-medium">Starting from ₹4,999</p>
                 </>
               )}
             </div>
