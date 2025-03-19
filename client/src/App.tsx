@@ -1,46 +1,44 @@
 import { Switch, Route } from "wouter";
-import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/shared/WhatsAppButton";
 import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import Portfolio from "@/pages/Portfolio";
-import Services from "@/pages/Services";
-import About from "@/pages/About";
-import Contact from "@/pages/Contact";
-import { AuthProvider } from "@/context/AuthContext"; // Added AuthProvider import
-
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import Home from "@/pages/home";
+import About from "@/pages/about";
+import Services from "@/pages/services";
+import Portfolio from "@/pages/portfolio";
+import Contact from "@/pages/contact";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/portfolio" component={Portfolio} />
-      <Route path="/services" component={Services} />
       <Route path="/about" component={About} />
+      <Route path="/services" component={Services} />
+      <Route path="/portfolio" component={Portfolio} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-export default function App() {
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider> {/* Added AuthProvider */}
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow mt-16 px-4 md:px-6">
-            <Router />
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
-        <Toaster />
-      </AuthProvider> {/* Closed AuthProvider */}
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Router />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+      <Toaster />
     </QueryClientProvider>
   );
 }
+
+export default App;
