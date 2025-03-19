@@ -9,6 +9,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
+  optimizeDeps: {
+    exclude: ['@replit/vite-plugin-runtime-error-modal']
+  },
   plugins: [
     react(),
     runtimeErrorOverlay(),
