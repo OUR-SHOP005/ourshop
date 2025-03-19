@@ -8,22 +8,21 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Fix cartographer import issue
+let cartographerPlugin = [];
+if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
+  import("@replit/vite-plugin-cartographer").then((m) => {
+    cartographerPlugin = [m.cartographer()];
+  });
+}
+
 export default defineConfig({
-  optimizeDeps: {
-    exclude: ['@replit/vite-plugin-runtime-error-modal']
-  },
+  base: "./",
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
+    ...cartographerPlugin, // Use the dynamically loaded plugin
   ],
   resolve: {
     alias: {
@@ -33,7 +32,7 @@ export default defineConfig({
   },
   root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname, "dist/public"),
+    outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
   },
 });
