@@ -1,30 +1,19 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LucideIcon, Code, Palette, TrendingUp, FileText } from "lucide-react";
+import { type SERVICES } from "@/lib/constants";
+import * as Icons from "lucide-react";
 
 interface ServiceCardProps {
-  service: {
-    title: string;
-    description: string;
-    icon: string;
-  };
+  service: (typeof SERVICES)[0];
 }
 
-const iconMap: Record<string, LucideIcon> = {
-  Code,
-  Palette,
-  TrendingUp,
-  FileText,
-};
-
 export default function ServiceCard({ service }: ServiceCardProps) {
-  const Icon = iconMap[service.icon];
+  // Create a dynamic icon component
+  const IconComponent = (Icons as any)[service.icon];
 
   return (
-    <Card className="transition-all hover:shadow-lg">
+    <Card className="group hover:border-primary/50 transition-colors">
       <CardHeader>
-        <div className="mb-4 inline-block rounded-lg bg-primary/10 p-3">
-          <Icon className="h-6 w-6 text-primary" />
-        </div>
+        <IconComponent className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
         <CardTitle>{service.title}</CardTitle>
       </CardHeader>
       <CardContent>
