@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const NAV_ITEMS = [
-  { label: "Home", path: "/" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "Services", path: "/services" },
-  { label: "About", path: "/about" },
-  { label: "Contact", path: "/contact" },
+  { label: "Home", path: "https://ourshop-omega.vercel.app/" },
+  { label: "Portfolio", path: "https:/ourshop-omega.vercel.app//portfolio" },
+  { label: "Services", path: "https:/ourshop-omega.vercel.app/services" },
+  { label: "About", path: "https:/ourshop-omega.vercel.app//about" },
+  { label: "Contact", path: "https:/ourshop-omega.vercel.app//contact" },
 ];
 
 export default function Navbar() {
