@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) 
 }
 
 export default defineConfig({
-  base: "/",                 // ✅ Use base as "/"
+  base: "/",                     // ✅ Use base as "/"
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -31,18 +31,18 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,               // ✅ Local port
+    port: 3000,
     open: true,
     host: true,
     fs: {
-      allow: ['.']            // ✅ Allow all file access
+      allow: ['.']
     }
   },
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
   },
-  // ✅ Configure SPA Fallback for React Router
+  // ✅ Configure preview for SPA fallback
   preview: {
     port: 4173,
     open: true,
