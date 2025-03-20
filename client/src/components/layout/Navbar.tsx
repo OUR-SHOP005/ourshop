@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, useNavigate } from "react-router-dom";  // ✅ Use react-router-dom
 import { MoonIcon, SunIcon, MenuIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -13,8 +13,9 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar() {
-  const [location] = useLocation();
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const navigate = useNavigate();                      // ✅ For programmatic navigation
+  const location = useLocation();                      // ✅ To detect current route
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -25,30 +26,33 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50 border-b">
       <div className="container flex h-16 items-center justify-between mx-auto px-4 sm:px-6 lg:px-8 my-2">
-        <Link href="/">
-          <a className="flex items-center gap-3">
-            <img 
-              src="/assets/logo.jpeg" 
-              alt="Our Shop Logo" 
-              className="h-10 w-10 rounded-full border-2 border-primary object-cover" // Added circular styling
-            />
-            <span className="text-xl font-semibold">OUR SHOP</span>
-          </a>
+
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-3">
+          <img 
+            src="/assets/logo.jpeg" 
+            alt="Our Shop Logo" 
+            className="h-10 w-10 rounded-full border-2 border-primary object-cover"
+          />
+          <span className="text-xl font-semibold">OUR SHOP</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
-            <Link
+            <Button
               key={item.path}
-              to={item.path}
+              variant="link"
+              onClick={() => navigate(item.path)}  // ✅ Use navigate for proper routing
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                location === item.path ? "text-primary" : "text-muted-foreground"
+                location.pathname === item.path ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {item.label}
-            </Link>
+            </Button>
           ))}
+
+          {/* Theme Toggle */}
           <Button variant="ghost" size="icon" onClick={toggleTheme}>
             {theme === "light" ? (
               <MoonIcon className="h-5 w-5" />
@@ -68,18 +72,21 @@ export default function Navbar() {
           <SheetContent>
             <div className="flex flex-col gap-4 pt-8">
               {NAV_ITEMS.map((item) => (
-                <Link key={item.path} href={item.path}>
-                  <a
-                    className={`text-lg font-medium ${
-                      location === item.path
-                        ? "text-primary"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                </Link>
+                <Button
+                  key={item.path}
+                  variant="link"
+                  onClick={() => navigate(item.path)}   // ✅ Use navigate here too
+                  className={`text-lg font-medium ${
+                    location.pathname === item.path
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Button>
               ))}
+
+              {/* Theme Toggle */}
               <Button variant="ghost" size="icon" onClick={toggleTheme}>
                 {theme === "light" ? (
                   <MoonIcon className="h-5 w-5" />

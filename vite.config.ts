@@ -17,57 +17,35 @@ if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) 
 }
 
 export default defineConfig({
-  base: "./",   // ✅ Use relative base path for Vercel compatibility
-
+  base: "/",                 // ✅ Use base as "/"
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...cartographerPlugin,  // Dynamically loaded plugin
+    ...cartographerPlugin
   ],
-
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
       "@shared": path.resolve(__dirname, "shared"),
     },
   },
-
-  root: path.resolve(__dirname, "client"),  // ✅ Ensure the correct root folder
-
-  build: {
-    outDir: path.resolve(__dirname, "dist"),   // ✅ Ensure correct build output folder
-    emptyOutDir: true,                         // Clean the dist folder before building
-  },
-
   server: {
+    port: 3000,               // ✅ Local port
+    open: true,
     host: true,
-    port: 3000,
+    fs: {
+      allow: ['.']            // ✅ Allow all file access
+    }
   },
-
+  build: {
+    outDir: path.resolve(__dirname, "dist"),
+    emptyOutDir: true,
+  },
+  // ✅ Configure SPA Fallback for React Router
   preview: {
     port: 4173,
-  },
-
-  // ✅ Fallback configuration for SPA routing
-  esbuild: {
-    drop: ["console", "debugger"],  // Remove console.logs in production
-  },
-
-  optimizeDeps: {
-    include: ["react", "react-dom"]
-  },
-
-  // ✅ Add middleware for SPA fallback
-  define: {
-    "process.env": {}
-  },
-
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
+    open: true,
+    host: true
   }
 });
