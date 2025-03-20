@@ -39,14 +39,14 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
           {NAV_ITEMS.map((item) => (
-            <Link key={item.path} href={item.path}>
-              <a
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === item.path ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
-                {item.label}
-              </a>
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === item.path ? "text-primary" : "text-muted-foreground"
+              }`}
+            >
+              {item.label}
             </Link>
           ))}
           <Button variant="ghost" size="icon" onClick={toggleTheme}>
