@@ -1,42 +1,34 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
-import path, { dirname } from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-import { fileURLToPath } from "url";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Fix cartographer import issue
-let cartographerPlugin = [];
-if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
-  import("@replit/vite-plugin-cartographer").then((m) => {
-    cartographerPlugin = [m.cartographer()];
-  });
-}
-
+// Vite configuration for Vercel SPA deployment
 export default defineConfig({
-  base: "./",
-  plugins: [
-    react(),
-    runtimeErrorOverlay(),
-    themePlugin(),
-    ...cartographerPlugin, // Use the dynamically loaded plugin
-  ],
+  plugins: [react()],
+  base: './',                // Ensure relative base path
+  build: {
+    outDir: 'dist',          // Vercel output directory
+    emptyOutDir: true,       // Clean the dist folder on build
+  },
+  server: {
+    host: true,               // Enable local network access
+    port: 3000,               // Optional: Local dev server port
+  },
+  preview: {
+    port: 4173,               // Preview server port
+  },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client", "src"),
-      "@shared": path.resolve(__dirname, "shared"),
-    },
+      '@': '/src'             // Optional alias for cleaner imports
+    }
   },
-  root: path.resolve(__dirname, "client"),
-  build: {
-    outDir: path.resolve(__dirname, "dist"),
-    emptyOutDir: true,
+  // Handle SPA fallback directly in Vite
+  esbuild: {
+    drop: ['console', 'debugger']  // Optimize production build
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom']  // Ensure dependencies are pre-bundled
+  }
 });
-
 
 
 
