@@ -10,12 +10,7 @@
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
-  "scripts": {
-    "build": "react-scripts build",
-    "start": "serve -s build",
-    "predeploy": "npm run build",
-    "deploy": "serve -s build"
-  }
+  
 
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
