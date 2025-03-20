@@ -17,12 +17,12 @@ if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) 
 }
 
 export default defineConfig({
-  base: "/",                     // ✅ Use base as "/"
+  base: "/",  // ✅ Use "/" for Vercel deployment
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...cartographerPlugin
+    ...cartographerPlugin,
   ],
   resolve: {
     alias: {
@@ -39,10 +39,14 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: path.resolve(__dirname, "dist"),
+    outDir: path.resolve(__dirname, "dist"),       // ✅ Ensure the output folder is "dist"
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html") // ✅ Explicitly add "index.html"
+      }
+    }
   },
-  // ✅ Configure preview for SPA fallback
   preview: {
     port: 4173,
     open: true,
