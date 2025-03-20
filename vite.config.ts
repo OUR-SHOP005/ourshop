@@ -17,22 +17,57 @@ if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) 
 }
 
 export default defineConfig({
-  base: "./",
+  base: "./",   // ✅ Use relative base path for Vercel compatibility
+
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...cartographerPlugin, // Use the dynamically loaded plugin
+    ...cartographerPlugin,  // Dynamically loaded plugin
   ],
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client", "src"),
       "@shared": path.resolve(__dirname, "shared"),
     },
   },
-  root: path.resolve(__dirname, "client"),
+
+  root: path.resolve(__dirname, "client"),  // ✅ Ensure the correct root folder
+
   build: {
-    outDir: path.resolve(__dirname, "dist"),
-    emptyOutDir: true,
+    outDir: path.resolve(__dirname, "dist"),   // ✅ Ensure correct build output folder
+    emptyOutDir: true,                         // Clean the dist folder before building
   },
+
+  server: {
+    host: true,
+    port: 3000,
+  },
+
+  preview: {
+    port: 4173,
+  },
+
+  // ✅ Fallback configuration for SPA routing
+  esbuild: {
+    drop: ["console", "debugger"],  // Remove console.logs in production
+  },
+
+  optimizeDeps: {
+    include: ["react", "react-dom"]
+  },
+
+  // ✅ Add middleware for SPA fallback
+  define: {
+    "process.env": {}
+  },
+
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  }
 });
